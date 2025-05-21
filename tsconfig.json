@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",                      // Important
+    "paths": {
+      "@/*": ["./*"]                      // Alias @ maps to root
+    }
+  },
+  "include": ["pom", "tests", "constants"]
+}
