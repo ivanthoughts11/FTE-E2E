@@ -1,5 +1,5 @@
 import { Locator, Page, expect } from "@playwright/test";
-import { LOGIN_PAGE, ADMIN_PAGE } from 'constants/page.constant';
+import { LOGIN_PAGE, ADMIN_PAGE } from '@/constants/admin/page.constant';
 
 class LoginPage {
   private page: Page;

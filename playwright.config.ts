@@ -27,7 +27,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: 'https://web-dot-flying-tigers-express-v2-test.as.r.appspot.com/',
+    baseURL: 'https://web-dot-flying-tigers-express-v2-dev.as.r.appspot.com/',
     headless: true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
