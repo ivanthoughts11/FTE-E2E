@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import LoginPage from 'POM/LoginPage';
+import LoginPage from '@/POM/admin/LoginPage';
 import AUTH_TEST_CASE from '@/constants/AUTH_TEST_CASE';
 import { LOGIN_PAGE } from 'constants/page.constant';
 import { validAdminCredentials, invalidAdminCredentials, invalidEmailAddress, InvalidPassword } from 'mocks/mockCredentials';
