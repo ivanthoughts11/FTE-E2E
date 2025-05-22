@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import LoginPage from '@/POM/customer/LoginPage';
 import AUTH_TEST_CASE from 'constants/customer/AUTH_TEST_CASE';
 import { LOGIN_PAGE } from '@/constants/customer/page.constant';
-import { validUserCredentials, invalidNumber, invalidOtp, emptyUserCredentials} from 'mocks/mockCredentials';
+import { validUserCredentials, invalidNumber, invalidOtp, emptyUserCredentials} from '@/mocks/UserCredentials';
 
 
 test.describe.configure({ retries: 1 });

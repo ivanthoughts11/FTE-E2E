@@ -16,8 +16,6 @@ export const invalidNumber = {
   number: "091234567891",
 };
 
-
-
 export const invalidOtp = {
   number: "09123456788",
   otp: "1234",

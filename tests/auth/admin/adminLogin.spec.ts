@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import LoginPage from '@/POM/admin/LoginPage';
 import AUTH_TEST_CASE from '@/constants/admin/AUTH_TEST_CASE';
 import { LOGIN_PAGE } from '@/constants/admin/page.constant';
-import { validAdminCredentials, invalidAdminCredentials, invalidEmailAddress, InvalidPassword } from 'mocks/mockCredentials';
+import { validAdminCredentials, invalidAdminCredentials, invalidEmailAddress, InvalidPassword } from '@/mocks/AdminCredentials';
 
 
 test.describe.configure({ retries: 1 });
