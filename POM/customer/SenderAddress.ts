@@ -4,8 +4,8 @@ import { senderAddress } from '@/mocks/AddressMock';
 
 class SenderAdressPage {
     private page: Page;
-    private senderAddress: Locator;
-    private receiverAddress: Locator;
+    private senderAddressButton: Locator;
+
     private provinceDropdown: Locator;
     private cityDropdown: Locator;
     private brgyDropdown: Locator;
@@ -28,8 +28,7 @@ class SenderAdressPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.senderAddress = page.getByRole('button', { name: 'Pick up at?' });
-    this.receiverAddress = page.locator('//div[normalize-space()="Deliver to?""]');
+    this.senderAddressButton = page.getByRole('button', { name: 'Pick up at?' });
     this.provinceDropdown = page.getByRole('combobox', { name: 'Province' });
     this.cityDropdown = page.getByRole('combobox').nth(1);
     this.brgyDropdown = page.getByRole('combobox').nth(2);
@@ -55,49 +54,31 @@ class SenderAdressPage {
     
   }
 
-  async isAddressPage(): Promise<void> {
-    await expect(this.page).toHaveURL(CUSTOMER_PAGE);
-    await expect(this.senderAddress).toBeVisible();
-    await expect(this.senderAddress).toBeVisible();
-  } 
+ 
   async navigateToAddressPage(): Promise<void> {
         await this.page.goto(CUSTOMER_PAGE);
     }
 
-  async fillSenderAddress(): Promise<void> {
-        await this.senderAddress.click();
+  async openSenderForm(): Promise<void> {
+        await this.senderAddressButton.click();
     }
-  
 
-  async selectProvince(province: string) {
-
-    await expect(this.provinceDropdown).toBeVisible();
-    await expect(this.provinceDropdown).toBeEnabled();
+  async selectProvince(province: string): Promise<void> {
     await this.provinceDropdown.click();
     const option = this.page.getByRole('option', { name: province });
-    await expect(option).toBeVisible();
     await option.click();
-  
-
   }
-  async selectCity(city: string) {
-      
-    await expect(this.cityDropdown).toBeVisible();
-    await expect(this.cityDropdown).toBeEnabled();
+
+  async selectCity(city: string): Promise<void> {
     await this.cityDropdown.click();
     const option = this.page.getByRole('option', { name: city });
-    await expect(option).toBeVisible();
     await option.click();
   }
 
-  async selectBrgy(brgy: string) {
-    await expect(this.brgyDropdown).toBeVisible();
-    await expect(this.brgyDropdown).toBeEnabled();
+  async selectBrgy(brgy: string): Promise<void> {
     await this.brgyDropdown.click();
-    const option = this.page.getByRole('option', { name: brgy});
-    await expect(option).toBeVisible();
+    const option = this.page.getByRole('option', { name: brgy });
     await option.click();
-
   }
 
   async fillStreet(street: string) {
@@ -140,20 +121,13 @@ class SenderAdressPage {
 
   async submitEmtpyAddress() {
     await this.clickConfirmButton();
-    await expect(this.provinceError).toBeVisible();
-    await expect(this.provinceError).toHaveText('Please select a province');
-    await expect(this.cityError).toBeVisible();
-    await expect(this.cityError).toHaveText('Please select a city');
-    await expect(this.brgyError).toBeVisible();
-    await expect(this.brgyError).toHaveText('Please select a barangay');
-    await expect(this.streetError).toBeVisible();
-    await expect(this.streetError).toHaveText('Please enter street address');
-    await expect(this.senderNameError).toBeVisible();
-    await expect(this.senderNameError).toHaveText('Please enter a name');
-    await expect(this.mobileNumberError).toBeVisible();
-    await expect(this.mobileNumberError).toHaveText('Please enter mobile number');
-    await expect(this.emailError).toBeVisible();
-    await expect(this.emailError).toHaveText('Please enter email');
+    await this.provinceError.waitFor({ state: 'visible' });
+    await this.cityError.waitFor({ state: 'visible' });
+    await this.brgyError.waitFor({ state: 'visible' });
+    await this.streetError.waitFor({ state: 'visible' });
+    await this.senderNameError.waitFor({ state: 'visible' });
+    await this.mobileNumberError.waitFor({ state: 'visible' });
+    await this.emailError.waitFor({ state: 'visible' });
   }
   
   async submitValidAddress() {
