@@ -71,6 +71,7 @@ class SenderAdressPage {
 
   async selectCity(city: string): Promise<void> {
     await this.cityDropdown.click();
+    await new Promise(resolve => setTimeout(resolve, 3000));
     const option = this.page.getByRole('option', { name: city });
     await option.click();
   }
