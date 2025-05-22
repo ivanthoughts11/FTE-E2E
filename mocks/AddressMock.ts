@@ -1,7 +1,7 @@
 
 export const senderAddress = {
     province: "Cebu",
-    city: "Cebu City",
+    city: "City of Cebu",
     brgy: "Apas",
     street: "test street",
     sender: "test sender",
@@ -10,23 +10,13 @@ export const senderAddress = {
     company: "sample",
 };
 export const receiverAddress = {
-    province: "Cebu",
-    city: "Cebu City",
-    brgy: "Apas",
-    street: "test street",
-    sender: "test receiver",
-    mobile: "09123456789",
-    email: "sample@gmail.com",
-    company: "sample",
+    province: 'Bohol',
+    city: 'Baclayon',
+    brgy: 'Laya', 
+    street: 'Test Street',
+    receiver: 'Receiver test',
+    mobile: '09123456789',
+    email: 'sample@gmail.com'
 };
 
-export const emptySenderAddress = {
-    province: "",
-    city: "",
-    brgy: "",
-    street: "",
-    sender: "",
-    mobile: "",
-    email: "",
-    company: "",
-};
+

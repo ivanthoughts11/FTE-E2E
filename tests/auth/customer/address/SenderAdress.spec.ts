@@ -22,21 +22,20 @@ test.describe("Sender Address Tests", () => {
     await loginPage.waitForOTPDelay();
     await loginPage.typeOTPViaKeyboard(validUserCredentials.otp);
     await loginPage.verifyRedirectedPage();
-    await CustomerPage.isAddressPage();
+   
 
   });
 
   
-
-   test(`${TEST_CASE_CUSTOMER["001"]}`, async () => {
+   test(`${TEST_CASE_CUSTOMER["001"]} - Submit valid address ` , async () => {
     
-    await CustomerPage.fillSenderAddress();
+    await CustomerPage.openSenderForm();
     await CustomerPage.submitValidAddress();
 
 });
 
-  test(`${TEST_CASE_CUSTOMER["002"]}`, async () => {
-    await CustomerPage.fillSenderAddress();
+  test(`${TEST_CASE_CUSTOMER["002"]} - Submit empty form `, async () => {
+    await CustomerPage.openSenderForm();
     await CustomerPage.submitEmtpyAddress();
     });
   
