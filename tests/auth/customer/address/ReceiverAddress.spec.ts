@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import ReceiverAddressPage from '@/POM/customer/ReceiverAddress';
+import ReceiverAddressPage from '@/POM/customer/Address';
 import LoginPage from '@/POM/customer/LoginPage';
 import { validUserCredentials } from '@/mocks/UserCredentials';
 import TEST_CASE_CUSTOMER from '@/constants/customer/TEST_CUSTOMER';
@@ -24,12 +24,94 @@ test.describe("Address Form Tests", () => {
 
   test(`${TEST_CASE_CUSTOMER["001"]} - Valid Address`, async () => {
     await receiverPage.openReceiverForm();
-    await receiverPage.submitReceiverForm();
+    await receiverPage.validAddress();
+    await receiverPage.clickConfirmReceiverButton();
   });
 
     test(`${TEST_CASE_CUSTOMER["002"]} - Empty Address`, async () => {
         await receiverPage.openReceiverForm();
-         await receiverPage.submitEmptyReceiverForm();
+        await receiverPage.clickConfirmReceiverButton();
+         await receiverPage.emptyAddress();
+        await receiverPage.provinceError.waitFor({ state: 'visible' });
+        await receiverPage.cityError.waitFor({ state: 'visible' });
+        await receiverPage.brgyError.waitFor({ state: 'visible' });
+        await receiverPage.streetError.waitFor({ state: 'visible' });
+        await receiverPage.senderNameError.waitFor({ state: 'visible' });
+        await receiverPage.mobileNumberError.waitFor({ state: 'visible' });
+        await receiverPage.emailError.waitFor({ state: 'visible' });
+
     });
+
+    
+  test(`${TEST_CASE_CUSTOMER["003"]} - Empty Province`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyProvince();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.provinceError.waitFor({ state: 'visible' });
+    await receiverPage.cityError.waitFor({ state: 'visible' });
+    await receiverPage.brgyError.waitFor({ state: 'visible' });
+  
+
+  });
+  test(`${TEST_CASE_CUSTOMER["004"]} - Empty City`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyCity();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.cityError.waitFor({ state: 'visible' });
+    await receiverPage.brgyError.waitFor({ state: 'visible' });
+  });
+  test(`${TEST_CASE_CUSTOMER["005"]} - Empty Barangay`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyBrgy();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.brgyError.waitFor({ state: 'visible' });
+
+  });
+  test(`${TEST_CASE_CUSTOMER["006"]} - Empty Street`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyStreet();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.streetError.waitFor({ state: 'visible' });
+
+  });
+  test(`${TEST_CASE_CUSTOMER["007"]} - Empty Receiver`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyName();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.senderNameError.waitFor({ state: 'visible' });
+  });
+  test(`${TEST_CASE_CUSTOMER["008"]} - Empty Mobile`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyMobile();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.mobileNumberError.waitFor({ state: 'visible' });
+  });
+  test(`${TEST_CASE_CUSTOMER["009"]} - Invalid Mobile Format`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.invalidMobile();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.mobileNumberError.waitFor({ state: 'visible' });
+  });
+  test(`${TEST_CASE_CUSTOMER["010"]} - Empty Email`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.emptyEmail();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.emailError.waitFor({ state: 'visible' });
+  });
+  test(`${TEST_CASE_CUSTOMER["011"]} - Invalid Email Format`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.invalidEmail();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.emailFormatError.waitFor({ state: 'visible' });
+    
+  });
+  test(`${TEST_CASE_CUSTOMER["012"]} - Invalid Sender Name Format`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.invalidSenderName();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.nameFormatError.waitFor({ state: 'visible' });
+    
+  });
+
 
 });
