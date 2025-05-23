@@ -8,7 +8,7 @@ import { validUserCredentials, invalidNumber, invalidOtp, emptyUserCredentials} 
 test.describe.configure({ retries: 1 });
 
 
-test.describe("Customer Login Tests", () => {
+test.describe("Customer Login Page Tests", () => {
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
@@ -16,8 +16,8 @@ test.describe("Customer Login Tests", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  //-------VALID NUMBER & OTP
-   test(`${AUTH_TEST_CASE["001"]}`, async () => {
+
+   test(`${AUTH_TEST_CASE["001"]} - Valid Number`, async () => {
         await loginPage.fillNumber(validUserCredentials.number);
         await loginPage.login();
         await loginPage.waitForOTPDelay();
@@ -25,8 +25,8 @@ test.describe("Customer Login Tests", () => {
         await loginPage.verifyRedirectedPage();
 });
 
-//---------INVALID NUMBER FORMAT
-  test(`${AUTH_TEST_CASE["002"]}`, async ({page}) => {
+
+  test(`${AUTH_TEST_CASE["002"]} - Invalid Number`, async ({page}) => {
         const loginPage = new LoginPage(page);
         await loginPage.fillNumber(invalidNumber.number);
         await loginPage.login();
@@ -34,8 +34,8 @@ test.describe("Customer Login Tests", () => {
         await expect(page).toHaveURL(LOGIN_PAGE); 
   });
 
-//---------EMPTY NUMBER
-  test(`${AUTH_TEST_CASE["003"]}`, async () => {
+
+  test(`${AUTH_TEST_CASE["003"]} - Empty Number`, async () => {
         await loginPage.navigateToLoginPage();
         await loginPage.fillNumber(emptyUserCredentials.number);
         await loginPage.login();
@@ -44,8 +44,7 @@ test.describe("Customer Login Tests", () => {
 
 });
 
- //--------INVALID OTP
-test(`${AUTH_TEST_CASE["004"]}`, async () => {
+test(`${AUTH_TEST_CASE["004"]} - Invalid OTP`, async () => {
         await loginPage.fillNumber(invalidOtp.number);
         await loginPage.login();
         await loginPage.waitForOTPDelay();
@@ -56,8 +55,7 @@ test(`${AUTH_TEST_CASE["004"]}`, async () => {
         
 });
 
-//----------OTP MAX ATTEMPTS REACHED
-test(`${AUTH_TEST_CASE["005"]}`, async () => {
+test(`${AUTH_TEST_CASE["005"]} - OTP Max Attempts Reached`, async () => {
         await loginPage.fillNumber(validUserCredentials.number)
         await loginPage.login();
         await loginPage.waitForOTPDelay();

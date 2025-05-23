@@ -8,7 +8,7 @@ import { validAdminCredentials, invalidAdminCredentials, invalidEmailAddress, In
 test.describe.configure({ retries: 1 });
 
 
-test.describe("Admin Login Tests", () => {
+test.describe("Admin Login Page Tests", () => {
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
@@ -16,26 +16,22 @@ test.describe("Admin Login Tests", () => {
     await loginPage.navigateToLoginPage();
   });
 
-  //-------VALID CREDENTIALS
-   test(`${AUTH_TEST_CASE["001"]}`, async () => {
-    await loginPage.navigateToLoginPage();
+
+   test(`${AUTH_TEST_CASE["001"]} - Valid Credentials`, async () => {
     await loginPage.userLogin(validAdminCredentials.username, validAdminCredentials.password);
     await loginPage.verifyRedirectedPage(); 
   });
 
-//---------INVALID CREDENTIALS
-  test(`${AUTH_TEST_CASE["002"]}`, async ({page}) => {
+  test(`${AUTH_TEST_CASE["002"]} - Invalid Credentials`, async ({page}) => {
     const loginPage = new LoginPage(page);
-    await loginPage.navigateToLoginPage();
     await loginPage.userLogin(invalidAdminCredentials.username, invalidAdminCredentials.password);
     
     await expect(loginPage.errorMessage).toHaveText('Invalid credentials. Please try again.');
     await expect(page).toHaveURL(LOGIN_PAGE); 
   });
 
-//---------EMPTY CREDENTIALS
-  test(`${AUTH_TEST_CASE["003"]}`, async () => {
-  await loginPage.navigateToLoginPage();
+
+  test(`${AUTH_TEST_CASE["003"]} - Empty Credentials`, async () => {
   await loginPage.emptyCredentials();
   await loginPage.login();
 
@@ -46,9 +42,8 @@ test.describe("Admin Login Tests", () => {
   await expect(loginPage.passwordError).toHaveText('Password must be at least 6 characters long');
 });
 
- //--------INVALID EMAIL FORMAT
-test(`${AUTH_TEST_CASE["004"]}`, async () => {
-        await loginPage.navigateToLoginPage();
+
+test(`${AUTH_TEST_CASE["004"]} - Invalid Email Addresss Format`, async () => {
         await loginPage.userLogin(invalidEmailAddress.username, invalidEmailAddress.password);
 
       
@@ -57,9 +52,8 @@ test(`${AUTH_TEST_CASE["004"]}`, async () => {
         
 });
 
-//----------INVALID PASSWORD FORMAT
-test(`${AUTH_TEST_CASE["005"]}`, async () => {
-await loginPage.navigateToLoginPage();
+
+test(`${AUTH_TEST_CASE["005"]} - Invalid Password Format`, async () => {
  await loginPage.userLogin(InvalidPassword.username, InvalidPassword.password);
 
   await expect(loginPage.passwordError).toBeVisible();

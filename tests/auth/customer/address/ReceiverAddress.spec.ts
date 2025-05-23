@@ -6,7 +6,7 @@ import TEST_CASE_CUSTOMER from '@/constants/customer/TEST_CUSTOMER';
 
 test.describe.configure({ retries: 1 });
 
-test.describe("Receiver Address Tests", () => {
+test.describe("Address Form Tests", () => {
   let receiverPage: ReceiverAddressPage;
   let loginPage: LoginPage;
 
@@ -22,12 +22,12 @@ test.describe("Receiver Address Tests", () => {
     await loginPage.verifyRedirectedPage();
   });
 
-  test(`${TEST_CASE_CUSTOMER["001"]} - Submit valid address`, async () => {
+  test(`${TEST_CASE_CUSTOMER["001"]} - Valid Address`, async () => {
     await receiverPage.openReceiverForm();
     await receiverPage.submitReceiverForm();
   });
 
-    test(`${TEST_CASE_CUSTOMER["002"]} - Submit empty address`, async () => {
+    test(`${TEST_CASE_CUSTOMER["002"]} - Empty Address`, async () => {
         await receiverPage.openReceiverForm();
          await receiverPage.submitEmptyReceiverForm();
     });

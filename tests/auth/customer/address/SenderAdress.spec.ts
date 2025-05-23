@@ -7,7 +7,7 @@ import { validUserCredentials} from '@/mocks/UserCredentials';
 
 test.describe.configure({ retries: 1 });
 
-test.describe("Sender Address Tests", () => {
+test.describe("Address Form Tests", () => {
   let CustomerPage: CustomerAddress;
   let loginPage: LoginPage;
 
@@ -27,14 +27,14 @@ test.describe("Sender Address Tests", () => {
   });
 
   
-   test(`${TEST_CASE_CUSTOMER["001"]} - Submit valid address ` , async () => {
+   test(`${TEST_CASE_CUSTOMER["001"]} - Valid Address ` , async () => {
     
     await CustomerPage.openSenderForm();
     await CustomerPage.submitValidAddress();
 
 });
 
-  test(`${TEST_CASE_CUSTOMER["002"]} - Submit empty form `, async () => {
+  test(`${TEST_CASE_CUSTOMER["002"]} - Empty Form `, async () => {
     await CustomerPage.openSenderForm();
     await CustomerPage.submitEmtpyAddress();
     });

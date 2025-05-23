@@ -1,8 +1,8 @@
 const TEST_CASE_CUSTOMER = {
-  "001": "Valid Sender Address",
-  "002": "Submit empty form",
-  "003": "Empty Sender Address",
-  "004": "Invalid Sender Address",
+  "001": "Test 1:",
+  "002": "Test 2:",
+  "003": "Test 3:",
+  "004": "Test 4:",
 };
 
 export default TEST_CASE_CUSTOMER;
