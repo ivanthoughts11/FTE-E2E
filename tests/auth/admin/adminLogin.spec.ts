@@ -8,7 +8,7 @@ import { validAdminCredentials, invalidAdminCredentials, invalidEmailAddress, In
 test.describe.configure({ retries: 1 });
 
 
-test.describe("Admin Login Tests", () => {
+test.describe("Admin Login Page Tests", () => {
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
@@ -17,14 +17,14 @@ test.describe("Admin Login Tests", () => {
   });
 
   //-------VALID CREDENTIALS
-   test(`${AUTH_TEST_CASE["001"]}`, async () => {
+   test(`${AUTH_TEST_CASE["001"]} - Valid Credentials`, async () => {
     await loginPage.navigateToLoginPage();
     await loginPage.userLogin(validAdminCredentials.username, validAdminCredentials.password);
     await loginPage.verifyRedirectedPage(); 
   });
 
 //---------INVALID CREDENTIALS
-  test(`${AUTH_TEST_CASE["002"]}`, async ({page}) => {
+  test(`${AUTH_TEST_CASE["002"]} - Invalid Credentials`, async ({page}) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigateToLoginPage();
     await loginPage.userLogin(invalidAdminCredentials.username, invalidAdminCredentials.password);
@@ -34,7 +34,7 @@ test.describe("Admin Login Tests", () => {
   });
 
 //---------EMPTY CREDENTIALS
-  test(`${AUTH_TEST_CASE["003"]}`, async () => {
+  test(`${AUTH_TEST_CASE["003"]} - Empty Credentials`, async () => {
   await loginPage.navigateToLoginPage();
   await loginPage.emptyCredentials();
   await loginPage.login();
@@ -47,7 +47,7 @@ test.describe("Admin Login Tests", () => {
 });
 
  //--------INVALID EMAIL FORMAT
-test(`${AUTH_TEST_CASE["004"]}`, async () => {
+test(`${AUTH_TEST_CASE["004"]} - Invalid Email Addresss Format`, async () => {
         await loginPage.navigateToLoginPage();
         await loginPage.userLogin(invalidEmailAddress.username, invalidEmailAddress.password);
 
@@ -58,7 +58,7 @@ test(`${AUTH_TEST_CASE["004"]}`, async () => {
 });
 
 //----------INVALID PASSWORD FORMAT
-test(`${AUTH_TEST_CASE["005"]}`, async () => {
+test(`${AUTH_TEST_CASE["005"]} - Invalid Password Format`, async () => {
 await loginPage.navigateToLoginPage();
  await loginPage.userLogin(InvalidPassword.username, InvalidPassword.password);
 

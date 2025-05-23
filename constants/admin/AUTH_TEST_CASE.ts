@@ -1,9 +1,9 @@
 const AUTH_TEST_CASE = {
-  "001": "Successful Login",
-  "002": "Incorrect Email and Password",
-  "003": "Empty Email and Password",
-  "004": "Invalid Email Format",
-  "005": "Invalid Password Format",
+  "001": "Test 1:",
+  "002": "Test 2:",
+  "003": "Test 3:",
+  "004": "Test 4:",
+  "005": "Test 5:",
 };
 
 export default AUTH_TEST_CASE;
