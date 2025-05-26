@@ -20,7 +20,7 @@ class LoginPage {
   constructor(page: Page) {
     this.page = page;
     this.numberInput = page.locator('input[id=":r2:-form-item"]');
-this.otpInput = page.locator('input[id=":r7:-form-item"]');
+    this.otpInput = page.locator('input[id=":r7:-form-item"]');
     this.numberSubmit = page.locator('button[type="submit"]');
     
     this.numberError = page.locator('text=Must be a valid mobile number');
@@ -69,7 +69,6 @@ async login(): Promise<void> {
     await expect(this.page).toHaveURL(CUSTOMER_PAGE);
   }
 
- 
   
 }
 

@@ -10,6 +10,18 @@ export const validAddress = {
     email: "sample@gmail.com",
     company: "sample",
 };
+
+export const validAddress2 = {
+    province: "Cebu",
+    city: "City of Cebu",
+    brgy: "Apas",
+    street: "cebu test street",
+    sender: "test sender",
+    receiver: "test receiver",
+    mobile: "09123456789",
+    email: "sample@gmail.com",
+    company: "sample",
+};
 export const invalidAddress = {
     sender: "test sender 123",
     receiver: "test receiver 123",

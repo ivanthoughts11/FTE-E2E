@@ -2,7 +2,7 @@ import { Locator, Page, expect } from "@playwright/test";
 import { CUSTOMER_PAGE } from '@/constants/customer/page.constant';
 import { validAddress, invalidAddress } from '@/mocks/AddressMock';
 
-class SenderAdressPage {
+class AdressPage {
     private page: Page;
     private senderAddressButton: Locator;
 
@@ -287,4 +287,4 @@ class SenderAdressPage {
   }
 
 }
-export default SenderAdressPage;
+export default AdressPage;
