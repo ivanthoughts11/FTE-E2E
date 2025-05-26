@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import ReceiverAddressPage from '@/POM/customer/Address';
+import AddressPage from '@/POM/customer/Address';
 import LoginPage from '@/POM/customer/LoginPage';
 import { validUserCredentials } from '@/mocks/UserCredentials';
 import TEST_CASE_CUSTOMER from '@/constants/customer/TEST_CUSTOMER';
@@ -7,12 +7,12 @@ import TEST_CASE_CUSTOMER from '@/constants/customer/TEST_CUSTOMER';
 test.describe.configure({ retries: 1 });
 
 test.describe("Address Form Tests", () => {
-  let receiverPage: ReceiverAddressPage;
+  let receiverPage: AddressPage;
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    receiverPage = new ReceiverAddressPage(page);
+    receiverPage = new AddressPage(page);
 
     await loginPage.navigateToLoginPage();
     await loginPage.fillNumber(validUserCredentials.number);
