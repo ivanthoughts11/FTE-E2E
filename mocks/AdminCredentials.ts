@@ -3,11 +3,6 @@ export const validAdminCredentials = {
   password: process.env.ADMIN_PASSWORD || "P@ssword123",
 };
 
-export const validUserCredentials = {
-  number: process.env.CUSTOMER_NUMBER || "09123456789",
-  otp: process.env.CUSTOMER_OTP || "4209",
-};
-
 export const emptyUserCredentials = {
   number: "",
 };

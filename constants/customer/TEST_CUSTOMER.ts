@@ -11,6 +11,8 @@ const TEST_CASE_CUSTOMER = {
   "010": "Test 10:",
   "011": "Test 11:",
   "012": "Test 12:",
+  "013": "Test 13:",
+  "014": "Test 14:",
   
 };
 

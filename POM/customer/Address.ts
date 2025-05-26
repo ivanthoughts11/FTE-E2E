@@ -16,9 +16,11 @@ class SenderAdressPage {
     private email: Locator;
     private companyName: Locator;
     private saveCheckbox: Locator;
-    private saveAddress: Locator;
+    private saveAddressButton: Locator;
+    private selectSaveAddress: Locator;
     private confirmSenderButton: Locator;
     private confirmReceiverButton: Locator;
+
 
 
     readonly provinceError: Locator;
@@ -46,10 +48,11 @@ class SenderAdressPage {
     this.companyName = page.locator('input[name="company"]');
     
     this.saveCheckbox = page.locator('//button[@id="shouldSaveAddress"]');
-    this.saveAddress = page.locator('button[class="bg-gray-2 flex w-full items-center justify-between rounded-lg p-3"]');
-    
     this.confirmSenderButton = page.getByRole('button', { name: 'Confirm pick up details' });
     this.confirmReceiverButton = page.getByRole('button', { name: 'Confirm delivery details' });
+    this.saveAddressButton = page.getByRole('button', { name: 'View Saved Addresses' });
+    this.selectSaveAddress = page.locator('div.border-b button').nth(0);
+    this.saveCheckbox = page.getByRole('checkbox', { name: 'Save this address and contact for future orders' });
    
     
     this.provinceError = page.locator('text=Please select a province');
@@ -117,15 +120,11 @@ class SenderAdressPage {
     await expect(this.companyName).toBeEnabled();
     await this.companyName.fill(company);
   }
-  async clickSaveCheckbox() {
-    await expect(this.saveCheckbox).toBeVisible();
-    await expect(this.saveCheckbox).toBeEnabled();
-    await this.saveCheckbox.click();
-  }
+ 
   async clickSaveAddress() {
-    await expect(this.saveAddress).toBeVisible();
-    await expect(this.saveAddress).toBeEnabled();
-    await this.saveAddress.click();
+    await expect(this.saveAddressButton).toBeVisible();
+    await expect(this.saveAddressButton).toBeEnabled();
+    await this.saveAddressButton.click();
   }
  
   async clickConfirmSenderButton() {
@@ -270,6 +269,21 @@ class SenderAdressPage {
     await this.fillMobileNumber(validAddress.mobile);
     await this.fillEmail(validAddress.email);
    
+  }
+
+  async clickSaveAddressCheckbox() {
+    await expect(this.saveCheckbox).toBeVisible();
+    await expect(this.saveCheckbox).toBeEnabled();
+    await this.saveCheckbox.click();
+  }
+  
+  
+  async selectSavedAddress() {
+    await expect(this.saveAddressButton).toBeVisible();
+    await expect(this.saveAddressButton).toBeEnabled();
+    await this.saveAddressButton.click();
+    await this.selectSaveAddress.waitFor({ state: 'visible' });
+    await this.selectSaveAddress.click();
   }
 
 }

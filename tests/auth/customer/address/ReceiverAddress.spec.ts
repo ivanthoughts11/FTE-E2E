@@ -29,16 +29,16 @@ test.describe("Address Form Tests", () => {
   });
 
     test(`${TEST_CASE_CUSTOMER["002"]} - Empty Address`, async () => {
-        await receiverPage.openReceiverForm();
-        await receiverPage.clickConfirmReceiverButton();
-         await receiverPage.emptyAddress();
-        await receiverPage.provinceError.waitFor({ state: 'visible' });
-        await receiverPage.cityError.waitFor({ state: 'visible' });
-        await receiverPage.brgyError.waitFor({ state: 'visible' });
-        await receiverPage.streetError.waitFor({ state: 'visible' });
-        await receiverPage.senderNameError.waitFor({ state: 'visible' });
-        await receiverPage.mobileNumberError.waitFor({ state: 'visible' });
-        await receiverPage.emailError.waitFor({ state: 'visible' });
+    await receiverPage.openReceiverForm();
+    await receiverPage.clickConfirmReceiverButton();
+    await receiverPage.emptyAddress();
+    await receiverPage.provinceError.waitFor({ state: 'visible' });
+    await receiverPage.cityError.waitFor({ state: 'visible' });
+    await receiverPage.brgyError.waitFor({ state: 'visible' });
+    await receiverPage.streetError.waitFor({ state: 'visible' });
+    await receiverPage.senderNameError.waitFor({ state: 'visible' });
+    await receiverPage.mobileNumberError.waitFor({ state: 'visible' });
+    await receiverPage.emailError.waitFor({ state: 'visible' });
 
     });
 
@@ -105,13 +105,28 @@ test.describe("Address Form Tests", () => {
     await receiverPage.emailFormatError.waitFor({ state: 'visible' });
     
   });
-  test(`${TEST_CASE_CUSTOMER["012"]} - Invalid Sender Name Format`, async () => {
+  test(`${TEST_CASE_CUSTOMER["012"]} - Invalid Reciever Name Format`, async () => {
     await receiverPage.openReceiverForm();
     await receiverPage.invalidSenderName();
     await receiverPage.clickConfirmReceiverButton();
     await receiverPage.nameFormatError.waitFor({ state: 'visible' });
     
   });
+
+test(`${TEST_CASE_CUSTOMER["013"]} - Save Address`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.validAddress();
+    await receiverPage.clickSaveAddressCheckbox();
+    await receiverPage.clickConfirmReceiverButton();
+    
+  });
+
+  test(`${TEST_CASE_CUSTOMER["014"]} - Use Save Address`, async () => {
+    await receiverPage.openReceiverForm();
+    await receiverPage.selectSavedAddress();
+    await receiverPage.clickConfirmReceiverButton();
+  });
+  
 
 
 });

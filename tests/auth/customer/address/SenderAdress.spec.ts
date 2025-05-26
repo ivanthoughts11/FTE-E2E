@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import CustomerAddress from '@/POM/customer/Address';
 import TEST_CASE_CUSTOMER from '@/constants/customer/TEST_CUSTOMER'
 import LoginPage from '@/POM/customer/LoginPage';
@@ -13,10 +13,9 @@ test.describe("Address Form Tests", () => {
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    
     CustomerPage = new CustomerAddress(page);
+    
     await loginPage.navigateToLoginPage();
-
     await loginPage.fillNumber(validUserCredentials.number);
     await loginPage.login();
     await loginPage.waitForOTPDelay();
@@ -112,6 +111,21 @@ test.describe("Address Form Tests", () => {
     await CustomerPage.clickConfirmSenderButton();
     await CustomerPage.nameFormatError.waitFor({ state: 'visible' });
   });
+
+  test(`${TEST_CASE_CUSTOMER["013"]} - Save Address`, async () => {
+    await CustomerPage.openSenderForm();
+    await CustomerPage.validAddress();
+    await CustomerPage.clickSaveAddressCheckbox();
+    await CustomerPage.clickConfirmSenderButton();
+    
+  });
+
+  test(`${TEST_CASE_CUSTOMER["014"]} - Use Save Address`, async () => {
+    await CustomerPage.openSenderForm();
+    await CustomerPage.selectSavedAddress();
+    await CustomerPage.clickConfirmSenderButton();
+  });
+
   
   
 });
